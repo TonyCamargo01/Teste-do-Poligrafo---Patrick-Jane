@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Polígrafo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .pergunta {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .oculto {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <h3>Jogo do Polígrafo</h3>
+
+    <form id="formulario">
+
+        <div class="pergunta">
+            <h4>1. Você conhecia a vítima?</h4>
+            <input type="radio" name="p1" value="sim" required> Sim
+            <input type="radio" name="p1" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>2. Você tem uma arma?</h4>
+            <input type="radio" name="p2" value="sim" required> Sim
+            <input type="radio" name="p2" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>3. Você usa drogas, cigarros ou bebidas?</h4>
+            <input type="radio" name="p3" value="sim" required> Sim
+            <input type="radio" name="p3" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>4. Você conhecia o local onde a vítima foi morta?</h4>
+            <input type="radio" name="p4" value="sim" required> Sim
+            <input type="radio" name="p4" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>5. Você conhece alguém ligado à vítima?</h4>
+            <input type="radio" name="p5" value="sim" required> Sim
+            <input type="radio" name="p5" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>6. Você estava em um relacionamento com a vítima?</h4>
+            <input type="radio" name="p6" value="sim" required> Sim
+            <input type="radio" name="p6" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>7. Você já brigou com a vítima?</h4>
+            <input type="radio" name="p7" value="sim" required> Sim
+            <input type="radio" name="p7" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>8. Alguém pode confirmar o que você fazia naquele dia?</h4>
+            <input type="radio" name="p8" value="sim" required> Sim
+            <input type="radio" name="p8" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>9. Você já conhecia a vítima antes?</h4>
+            <input type="radio" name="p9" value="sim" required> Sim
+            <input type="radio" name="p9" value="nao"> Não
+        </div>
+
+        <div class="pergunta">
+            <h4>10. Você notou algo estranho na vítima recentemente?</h4>
+            <input type="radio" name="p10" value="sim" required> Sim
+            <input type="radio" name="p10" value="nao"> Não
+        </div>
+
+        <button type="submit">Ver resultado</button>
+        <button type="reset">Recomeçar</button>
+
+    </form>
+
+    <div id="resultado" class="oculto"></div>
+</main>
+
+<script>
+    const formulario = document.getElementById("formulario");
+    const resultado = document.getElementById("resultado");
+
+    formulario.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let sim = document.querySelectorAll(
+            'input[value="sim"]:checked'
+        ).length;
+
+        resultado.classList.remove("oculto");
+
+        if (sim < 5) {
+            resultado.innerHTML = "Você meu amigo é inocente, porque seu total de 'Sim' foi: " + sim;
+        } else if (sim == 5) {
+            resultado.innerHTML = "Você pode ser considerado suspeito, por suas respostas foram:" + sim;
+        } else if (sim < 8) {
+            resultado.innerHTML = "Você pode ser um cúmplice nesse caso por seu número de respostas 'Sim' serem " + sim;
+        } else {
+            resultado.innerHTML = "Você pode ser o culpado e até mesmo o Red John, " + sim;
+        }
+    });
+
+    formulario.addEventListener("reset", function() {
+        resultado.classList.add("oculto");
+        resultado.innerHTML = "";
+    });
+</script>
+<figure align="center">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkWk2ukj3_D3lQyiyrS166XJAgsFIZbIlklWZiOuYyw&s=10" alt="Patrick Jane"  width="500px"height="500px">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrjGIxCZWH2aGDiPvpnRU5bDHaMypwJeTd8QfHHpyu_Q&s=10" alt="suspeito" width="500px"height="500px" >
+</figure>
+</body>
+</html>
